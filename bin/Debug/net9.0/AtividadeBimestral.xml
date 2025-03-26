@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AtividadeBimestral</name>
+    </assembly>
+    <members>
+        <member name="M:AtividadeBimestral.Controllers.CartaoController.ObterBandeira(System.String)">
+            <summary>
+            Obtem os numeros do cartao de credito e retorna sua bandeira se conhecida.
+            </summary>
+            <param name="cartao">Número do cartão de crédito (16 dígitos)</param>
+            <returns>Retorna a bandeira caso conhecida</returns>
+            <response code="200">Retorna a bandeira do cartão</response>
+            <response code="404">Bandeira Não cadastrada ou número do cartão inválido</response>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.CartaoController.CartaoValido(System.String)">
+            <summary>
+            Valida Um cartão com base no banco de dados
+            </summary>
+            <param name="cartao">Número do cartão de crédito (16 dígitos)</param>
+            <returns>Retorna Veradeiro ou falso ou um erro 404 se desconhecida.</returns>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.PagamentosController.CalcularParcelas(AtividadeBimestral.DTO.ParcelasDTO)">
+            <summary>
+            Calcula e grava quantas parcelas e o quanto tem que pagar com juros
+            </summary>
+            <param name="pagamentoRequest">iforme dos valores e quantidade de parcelas</param>
+            <returns>Lista das Parcelas calculadas</returns>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.PagamentosController.EfetuarPagamento(AtividadeBimestral.DTO.PagamentoDTO)">
+            <summary>
+            Inicia o Processo de pagamento de uma parcela
+            </summary>
+            <param name="criarPagamentoDTO">Detalhes do pagamento</param>
+            <returns>retorna se o pagamento foi aprovado</returns>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.PagamentosController.ConsultarSituacaoPagamento(System.Int32)">
+            <summary>
+            Consulta como esta a situação de uma parcela
+            </summary>
+            <param name="id">numero da parcela</param>
+            <returns>retorna a situação da parcela</returns>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.PagamentosController.ConfirmarPagamento(System.Int32)">
+            <summary>
+             Corfirma o pagamento de determinada parcela
+            </summary>
+            <param name="id">numero da parcela</param>
+            <returns>Retorna se foi processada o pagamento</returns>
+        </member>
+        <member name="M:AtividadeBimestral.Controllers.PagamentosController.CancelarPagamento(System.Int32)">
+            <summary>
+            Cancela uma determinada parcela
+            </summary>
+            <param name="id">numero da parcela a ser cancelada</param>
+            <returns>Retorna se parcela foi cancelada</returns>
+        </member>
+    </members>
+</doc>
