@@ -63,3 +63,4 @@ E:\6 termo dnv\Linguagens de Programação(LP)\Projetos_Atividades\AtividadeBime
 E:\6 termo dnv\Linguagens de Programação(LP)\Projetos_Atividades\AtividadeBimestral\AtividadeBimestral\obj\Debug\net9.0\AtividadeBimestral.pdb
 E:\6 termo dnv\Linguagens de Programação(LP)\Projetos_Atividades\AtividadeBimestral\AtividadeBimestral\obj\Debug\net9.0\AtividadeBimestral.genruntimeconfig.cache
 E:\6 termo dnv\Linguagens de Programação(LP)\Projetos_Atividades\AtividadeBimestral\AtividadeBimestral\obj\Debug\net9.0\ref\AtividadeBimestral.dll
+E:\6 termo dnv\Linguagens de Programação(LP)\Projetos_Atividades\AtividadeBimestral\AtividadeBimestral\obj\Debug\net9.0\AtividadeBimestral.sourcelink.json

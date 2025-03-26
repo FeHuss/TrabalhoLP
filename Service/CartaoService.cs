@@ -6,12 +6,12 @@ namespace AtividadeBimestral.Service
 {
     public class CartaoService
     {
-        private readonly CartaoRepositorio _cartaoRepository;
+        private readonly CartaoRepositorio _cartaoRepositorio;
         private readonly AppSettings _appSettings;
 
-        public CartaoService(CartaoRepositorio transacaoRepository, AppSettings appSettings)
+        public CartaoService(CartaoRepositorio cartaoRepositorio, AppSettings appSettings)
         {
-            _cartaoRepository = transacaoRepository;
+            _cartaoRepositorio = cartaoRepositorio;
             _appSettings = appSettings;
         }
 
@@ -47,7 +47,7 @@ namespace AtividadeBimestral.Service
 
         public bool Validar(string numeroCartao)
         {
-            var cartao = _cartaoRepository.ObterPorId(numeroCartao);
+            var cartao = _cartaoRepositorio.ObterPorId(numeroCartao);
 
             if (cartao == null || cartao.Validade < DateTime.Now)
             {

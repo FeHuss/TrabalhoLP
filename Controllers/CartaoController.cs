@@ -26,8 +26,6 @@ namespace AtividadeBimestral.Controllers
         /// <response code="200">Retorna a bandeira do cartão</response>
         /// <response code="404">Bandeira Não cadastrada ou número do cartão inválido</response>
         [HttpGet("{cartao}/obter-bandeira")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public IActionResult ObterBandeira(string cartao)
         {
             _logger.LogInformation("Recebida o cartao tentando obter sua bandeira: {Cartao}", cartao);
@@ -50,8 +48,6 @@ namespace AtividadeBimestral.Controllers
         /// <param name="cartao">Número do cartão de crédito (16 dígitos)</param>
         /// <returns>Retorna Veradeiro ou falso ou um erro 404 se desconhecida.</returns>
         [HttpGet("{cartao}/valido")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public IActionResult CartaoValido(string cartao)
         {
             _logger.LogInformation("Recebido o cartao, sera validado: {Cartao}", cartao);

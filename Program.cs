@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Text;
 using AtividadeBimestral.Repository;
 using AtividadeBimestral;
-
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Formatting.Compact;
@@ -15,13 +14,13 @@ var logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
 Directory.CreateDirectory(logFolder);
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Error()
+    .MinimumLevel.Information()
     .WriteTo.File(new CompactJsonFormatter(),
            Path.Combine(logFolder, ".json"),
-            retainedFileCountLimit: 7,
-            rollingInterval: RollingInterval.Day)
+            retainedFileCountLimit: 1,
+            rollingInterval: RollingInterval.Month)
     .WriteTo.File(Path.Combine(logFolder, ".log"),
-            retainedFileCountLimit: 7,
+            retainedFileCountLimit: 1,
             rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
@@ -102,8 +101,6 @@ try
     builder.Services.AddScoped<TransacaoRepositorio>();
     builder.Services.AddScoped<MySqlDbContext>();
 
-
-    //builder.Services.AddTransient //???
 
 
 

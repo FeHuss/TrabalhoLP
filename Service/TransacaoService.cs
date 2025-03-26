@@ -21,7 +21,7 @@ namespace AtividadeBimestral.Service
             {
                 var parcelas = new List<ParcelasDRO>();
 
-                var valorParcela = pagamentoRequest.ValorTotal * pagamentoRequest.TaxaJuros / pagamentoRequest.QuantidadeParcelas;
+                var valorParcela = pagamentoRequest.ValorTotal;
 
                 for (int i = 0; i < pagamentoRequest.QuantidadeParcelas; i++)
                 {
@@ -30,6 +30,7 @@ namespace AtividadeBimestral.Service
                         Parcela = i + 1,
                         Valor = valorParcela,
                     });
+                    valorParcela += (valorParcela * (pagamentoRequest.TaxaJuros/100));
                 }
 
                 return parcelas;
@@ -113,13 +114,13 @@ namespace AtividadeBimestral.Service
                 }
                 if (transacao.Situacao == (Transacao.TpSituacao)2)
                 {
-                    throw new Exception("Transação já confirmada");
+                    throw new Exception("Transação já esta confirmada");
                 }
                 if (transacao.Situacao == (Transacao.TpSituacao)3)
                 {
-                    throw new Exception("Transação cancelada");
+                    throw new Exception("Transação cancelada não é posivel confirma-la");
                 }
-                transacao.Situacao = (Transacao.TpSituacao)1;
+                transacao.Situacao = (Transacao.TpSituacao)2;
 
                 _transacaoRepository.Atualizar(transacao);
 
@@ -147,7 +148,7 @@ namespace AtividadeBimestral.Service
                 }
                 if (transacao.Situacao == (Transacao.TpSituacao)2)
                 {
-                    throw new Exception("Transação já confirmada");
+                    throw new Exception("Transação já confirmada não é possivel cancela-la");
                 }
 
                 transacao.Situacao = (Transacao.TpSituacao)3;

@@ -22,16 +22,16 @@ namespace AtividadeBimestral.Controllers
         /// <summary>
         /// Calcula e grava quantas parcelas e o quanto tem que pagar com juros
         /// </summary>
-        /// <param name="pagamentoRequest">iforme dos valores e quantidade de parcelas</param>
+        /// <param name="parcelas">iforme dos valores e quantidade de parcelas</param>
         /// <returns>Lista das Parcelas calculadas</returns>
         [HttpPost("calcular-parcelas")]
-        public ActionResult<ParcelasDRO> CalcularParcelas([FromBody] ParcelasDTO pagamentoRequest)
+        public ActionResult<ParcelasDRO> CalcularParcelas([FromBody] ParcelasDTO parcelas)
         {
             try
             {
-                var pagamentoResponse = _transacaoService.CalcularParcelas(pagamentoRequest);
+                var parcelasCalculadas = _transacaoService.CalcularParcelas(parcelas);
 
-                return Ok(pagamentoResponse);
+                return Ok(parcelasCalculadas);
             }
             catch (Exception ex)
             {
@@ -45,18 +45,18 @@ namespace AtividadeBimestral.Controllers
         /// <param name="criarPagamentoDTO">Detalhes do pagamento</param>
         /// <returns>retorna se o pagamento foi aprovado</returns>
         [HttpPost("pagamentos")]
-        public ActionResult<PagamentoDRO> EfetuarPagamento([FromBody] PagamentoDTO criarPagamentoDTO)
+        public ActionResult<PagamentoDRO> EfetuarPagamento([FromBody] PagamentoDTO pagamentoDTO)
         {
             try
             {
-                if (_cartaoService.Validar(criarPagamentoDTO.Cartao))
+                if (!_cartaoService.Validar(pagamentoDTO.Cartao))
                 {
                     return BadRequest("Cartão inválido.");
                 }
 
-                var pagamentoResponse = _transacaoService.EfetuarPagamento(criarPagamentoDTO);
+                var pagamentoDRO = _transacaoService.EfetuarPagamento(pagamentoDTO);
 
-                return Ok(pagamentoResponse);
+                return Ok(pagamentoDRO);
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace AtividadeBimestral.Controllers
         /// <param name="id">numero da parcela</param>
         /// <returns>retorna a situação da parcela</returns>
         [HttpGet("{id}/situacao")]
-        public ActionResult<int> ConsultarSituacaoPagamento([FromBody] int id)
+        public ActionResult<int> ConsultarSituacaoPagamento( int id)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace AtividadeBimestral.Controllers
         /// <param name="id">numero da parcela</param>
         /// <returns>Retorna se foi processada o pagamento</returns>
         [HttpPut("{id}/confirmar")]
-        public ActionResult ConfirmarPagamento([FromBody] int id)
+        public ActionResult ConfirmarPagamento( int id)
         {
             try
             {
@@ -107,9 +107,8 @@ namespace AtividadeBimestral.Controllers
         /// </summary>
         /// <param name="id">numero da parcela a ser cancelada</param>
         /// <returns>Retorna se parcela foi cancelada</returns>
-
         [HttpPut("{id}/cancelar")]
-        public ActionResult CancelarPagamento([FromBody] int id)
+        public ActionResult CancelarPagamento(int id)
         {
             try
             {

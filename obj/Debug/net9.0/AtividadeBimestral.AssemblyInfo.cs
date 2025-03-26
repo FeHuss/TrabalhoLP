@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtividadeBimestral")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+352a2b189ebaff12b00a1857efc89d7f37f0d8f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd4ae4eee322dba3f692fccd4a3bdd3599208666")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtividadeBimestral")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtividadeBimestral")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

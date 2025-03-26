@@ -25,13 +25,17 @@ namespace AtividadeBimestral.Repository
                 {
                     cmd.CommandText = "select * from Cartao where Numero = @Numero";
                     cmd.Parameters.AddWithValue("@Numero", Numero);
-                    MySqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
+                    using (MySqlDataReader dr = cmd.ExecuteReader()) // Usando 'using' para fechar corretamente
                     {
-                        cartao = new Cartao();
-                        cartao.numero = dr["Numero"].ToString();
-                        cartao.Validade = Convert.ToDateTime(dr["Validade"]);
-                    }
+                        if (dr.Read())
+                        {
+                            cartao = new Cartao
+                            {
+                                numero = dr["Numero"].ToString(),
+                                Validade = Convert.ToDateTime(dr["Validade"])
+                            };
+                        }
+                    } // O 'using' fecha automaticamente o DataReader aqui
                 }
             }
             catch (MySqlException ex)
@@ -40,33 +44,6 @@ namespace AtividadeBimestral.Repository
             }
 
             return cartao;
-        }
-
-        public IEnumerable<Cartao> ObterTodos()
-        {
-            List<Cartao> cartoes = new List<Cartao>();
-
-            try
-            {
-                using (MySqlCommand cmd = _dbContext.GetConnection().CreateCommand())
-                {
-                    cmd.CommandText = "select * from Cartao";
-                    MySqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        Cartao cartao = new Cartao();
-                        cartao.numero = dr["Numero"].ToString();
-                        cartao.Validade = Convert.ToDateTime(dr["Validade"]);
-                        cartoes.Add(cartao);
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                throw;
-            }
-
-            return cartoes;
         }
     }
 }
